@@ -1,93 +1,129 @@
+CREATE DATABASE IF NOT EXISTS fcd2;
+
+USE fcd2;
+
+
 DROP TABLE IF EXISTS user_status;
+DROP TABLE IF EXISTS p_position;
+DROP TABLE IF EXISTS foot;
+-- DROP TABLE IF EXISTS opponent;
+-- DROP TABLE IF EXISTS surface;
+-- DROP TABLE IF EXISTS p_status;
+-- DROP TABLE IF EXISTS m_result;
+-- DROP TABLE IF EXISTS place;
+-- DROP TABLE IF EXISTS training;
+-- DROP TABLE IF EXISTS presence;
+-- DROP TABLE IF EXISTS match_play;
+DROP TABLE IF EXISTS players;
+
 
 CREATE TABLE user_status (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  label VARCHAR(255)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb3;
+  `label` VARCHAR(255)
+);
+INSERT INTO
+user_status(id, `label`)
+VALUES
+  ("Administrateur"),
+  ("Joueurs");
 
-DROP TABLE IF EXISTS p_position;
+
 
 CREATE TABLE p_position (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  label VARCHAR(255)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb3;
+  `label` VARCHAR(255)
+);
 
-DROP TABLE IF EXISTS foot;
+INSERT INTO
+p_position(`label`)
+VALUES
+  ("GK"),
+  ("DC"),
+  ("DG"),
+  ("DD"),
+  ("ALG"),
+  ("ALD"),
+  ("MDef"),
+  ("MC"),
+  ("MD"),
+  ("MG"),
+  ("MO"),
+  ("ATG"),
+  ("ATD"),
+  ("ATT"),
+  ("Entraineur");
 
 CREATE TABLE foot (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  label VARCHAR(255)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb3;
+  `label` VARCHAR(255)
+);
 
-DROP TABLE IF EXISTS opponent;
-
-CREATE TABLE opponent (
-  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  team VARCHAR(255)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb3;
-
-DROP TABLE IF EXISTS surface;
-
-CREATE TABLE surface (
-  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  label VARCHAR(255)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb3;
-
-DROP TABLE IF EXISTS p_status;
-
-CREATE TABLE p_status (
-  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  label VARCHAR(255)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb3;
-
-DROP TABLE IF EXIST m_result;
-
-CREATE TABLE m_result (
-  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  label VARCHAR(255)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb3;
-
-DROP TABLE IF EXIST place;
-
-CREATE TABLE place (
-  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  label VARCHAR(255)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb3;
+INSERT INTO
+foot(id, `label`)
+VALUES
+("gauche"),
+("droit");
 
 
-DROP TABLE IF EXISTS training;
 
-CREATE TABLE training (
-  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  train_date DATE,
-  surface_id INT
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb3;
+-- CREATE TABLE opponent (
+--   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+--   team VARCHAR(255)
+-- );
 
 
-DROP TABLE IF EXISTS presence;
-
-CREATE TABLE presence (
-  id_players INT,
-  id_training INT,
-  id_match_play INT,
-  id_t_status INT
- ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb3;
+-- CREATE TABLE surface (
+--   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+--   `label` VARCHAR(255)
+-- );
 
 
-DROP TABLE IF EXISTS match_play;
+-- CREATE TABLE p_status (
+--   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+--   `label` VARCHAR(255)
+-- );
 
-CREATE TABLE match_play (
-  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  m_day DATE,
-  opponent_id VARCHAR(255),
-  place_id VARCHAR(255),
-  surface_id INT,
-  m_result INT,
-  score INT,
-  presence_id INT
-  ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb3;
 
-DROP TABLE IF EXISTS players;
+-- CREATE TABLE m_result (
+--   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+--   `label` VARCHAR(255)
+-- );
+
+
+-- CREATE TABLE place (
+--   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+--   `label` VARCHAR(255)
+-- );
+
+
+
+-- CREATE TABLE training (
+--   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+--   train_date DATE,
+--   surface_id INT
+-- );
+
+
+
+-- CREATE TABLE presence (
+--   id_players INT,
+--   id_training INT,
+--   id_match_play INT,
+--   id_t_status INT
+--  );
+
+
+
+-- CREATE TABLE match_play (
+--   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+--   m_day DATE,
+--   opponent_id VARCHAR(255),
+--   place_id VARCHAR(255),
+--   surface_id INT,
+--   m_result INT,
+--   score INT,
+--   presence_id INT
+--   );
 
 CREATE TABLE players (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -98,43 +134,13 @@ CREATE TABLE players (
   phone_num INT,
   `password` VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
-  p_position_id INT,
-  foot_id INT
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb3;
+  FOREIGN KEY (id p_position) INT REFERENCES p_position (id p_position),
+  FOREIGN KEY (id foot) INT REFERENCES foot (id foot)
+);
+
 
 INSERT INTO
-user_status(id, label)
-VALUES
-  (1, "Administrateur"),
-  (2, "Joueurs");
-
-INSERT INTO
-p_position(id, label)
-VALUES
-  (1, "GK"),
-  (2, "DC"),
-  (3, "DG"),
-  (4, "DD"),
-  (5, "ALG"),
-  (6, "ALD"),
-  (7, "MDef"),
-  (8, "MC"),
-  (9, "MD"),
-  (10, "MG"),
-  (11, "MO"),
-  (12, "ATG"),
-  (13, "ATD"),
-  (14, "ATT"),
-  (15, "Entraineur");
-
-INSERT INTO
-p_position(id, label)
-VALUES
-(1, "gauche"),
-(2, "droit");
-
-INSERT INTO
-  players (id, lastName, firstName, birthday, p_age, phone_num, `password`, email, p_position_id, foot_id, user_status)
+  players (id, lastName, firstName, birthday, p_age, phone_num,  email, `password`, p_position_id, foot_id, user_status)
 VALUES
   (
     1
