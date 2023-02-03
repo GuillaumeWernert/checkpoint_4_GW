@@ -5,7 +5,11 @@ function Home() {
     <div>
       <div className="home">
         <div className="bg">
-          <img src="\src\assets\equipe2_fcd.jpg" alt="equipe_2" />
+          <img
+            className="w-full"
+            src="\src\assets\equipe2_fcd.jpg"
+            alt="equipe_2"
+          />
         </div>
         <h1 className="text-center font-bold">HISTOIRE DU CLUB</h1>
         <p className="history text-center">
@@ -34,20 +38,50 @@ function Home() {
           quas quibusdam. Soluta.
         </p>
         <h1 className="text-center font-bold">LES EMBLEMES DU CLUB</h1>
-        <h3>Arsène Wenger</h3>
-        <img className="mb-2" src="\src\assets\arsene1.jpg" alt="arsène" />
-        <h3>Lulu</h3>
-        <img className="mb-2" src="\src\assets\lulu.jpg" alt="lulu" />
-        <h3>Théo</h3>
-        <img src="\src\assets\théo.jpg" alt="théo" />
+        <div className="emblemes md:flex md:m-2">
+          <div>
+            <h3>Arsène Wenger</h3>
+            <img
+              className="mb-2 md:w-11/12"
+              src="\src\assets\arsene1.jpg"
+              alt="arsène"
+            />
+          </div>
+          <div>
+            <h3>Lulu</h3>
+            <img
+              className="mb-2 md:w-11/12"
+              src="\src\assets\lulu.jpg"
+              alt="lulu"
+            />
+          </div>
+          <div>
+            <h3>Théo</h3>
+            <img
+              className="mb-2 md:w-12/12"
+              src="\src\assets\théo.jpg"
+              alt="théo"
+            />
+          </div>
+        </div>
         <h1 className="text-center font-bold">LES AUTRES EQUIPES</h1>
-        <img
-          className="mb-2"
-          src="\src\assets\equipe1_fcd.jpg"
-          alt="équipe_1"
-        />
-        <img className="mb-2" src="\src\assets\fem.jpg" alt="féminines" />
-        <img src="\src\assets\vet21_2.jpg" alt="vétérans" />
+        <div className="md:flex md:justify-between md:m-2">
+          <img
+            className="mb-2 md:w-3/12"
+            src="\src\assets\equipe1_fcd.jpg"
+            alt="équipe_1"
+          />
+          <img
+            className="mb-2 md:w-3/12"
+            src="\src\assets\fem.jpg"
+            alt="féminines"
+          />
+          <img
+            className="mb-2 md:w-3/12"
+            src="\src\assets\vet21_2.jpg"
+            alt="vétérans"
+          />
+        </div>
       </div>
     </div>
   );
