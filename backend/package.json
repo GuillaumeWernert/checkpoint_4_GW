@@ -22,7 +22,8 @@
     "joi": "^17.7.0",
     "jsonwebtoken": "^9.0.0",
     "migrate": "^1.8.0",
-    "mysql2": "^2.3.3"
+    "mysql2": "^2.3.3",
+    "template-fullstack": "file:.."
   },
   "rules": {
     "no-console": [
