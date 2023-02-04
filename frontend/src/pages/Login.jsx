@@ -1,8 +1,36 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import apiConnexion from "@services/apiConnexion";
+import User from "@context/user";
 
 function Login() {
   const [connexion, setConnexion] = useState({ email: "", password: "" });
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
+  const userContext = useContext(User.UserContext);
+
+  const handleSubmit = () => {
+    const emailPattern =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const pwdPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+    if (
+      emailPattern.test(connexion.email) &&
+      pwdPattern.test(connexion.password)
+    ) {
+      apiConnexion
+        .post("/login", { ...connexion })
+        .then((res) => {
+          navigate("/players");
+          userContext.handleUser(res.data);
+        })
+        .catch((err) => {
+          setMessage(err.response.data.msg);
+          console.error(err);
+        });
+    } else {
+      setMessage("Invalid credentials");
+    }
+  };
 
   return (
     <div className="min-h-screen">
@@ -44,6 +72,7 @@ function Login() {
               placeholder="Mot de passe"
             />
             <div />
+            <p>{message}</p>
           </div>
           <div className="w-full flex justify-evenly">
             <Link
@@ -56,6 +85,7 @@ function Login() {
             <button
               className="text-white bg-[#000000] rounded-xl px-5 py-2 text-ml font-semibold"
               type="button"
+              onClick={handleSubmit}
             >
               Se connecter
             </button>
