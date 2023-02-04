@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Players from "@pages/Players";
-import Player from "@pages/Player";
+import Player from "@pages/Administration";
 import Home from "@pages/Home";
 import Footer from "@components/Footer";
 import Login from "@pages/Login";
