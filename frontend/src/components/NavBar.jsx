@@ -8,7 +8,7 @@ function NavBar() {
         <img className="h-16 mr-10" src="\src\assets\logo_fcd.jpg" alt="logo" />
       </Link>
       <Link to="/players">Listes des joueurs</Link>
-      <Link to="/player">Un joueur</Link>
+      <Link to="/administration">Administration</Link>
       <Link to="/Login">Connexion</Link>
     </nav>
   );
