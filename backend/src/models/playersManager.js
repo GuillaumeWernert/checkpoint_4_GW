@@ -28,11 +28,11 @@ class PlayersManager extends AbstractManager {
     ]);
   }
 
-  update(player) {
-    return this.connection.query(
-      `update ${this.table} set title = ? where id = ?`,
-      [player.title, player.id]
-    );
+  update(player, id) {
+    return this.connection.query(`UPDATE ${this.table} SET ? WHERE id = ?`, [
+      player,
+      id,
+    ]);
   }
 }
 
