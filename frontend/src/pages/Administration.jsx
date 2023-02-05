@@ -43,122 +43,139 @@ function Administration() {
   return (
     <div>
       <h1 className="text-3xl mb-4 text-center">Administration</h1>
-      <form onSubmit={(e) => sendForm(e)}>
+      <form className="w-full" onSubmit={(e) => sendForm(e)}>
         <h2 className="text-2xl mb-4 text-center">Ajout d'un nouveau joueur</h2>
-        <div className="flex flex-wrap justify-evenly gap-5 mb-4">
-          <label className="w-[40%] flex flex-col text-2xl">
-            Nom :
-            <input
-              required
-              className=" bg-slate-300 placeholder-black p-2 rounded-3xl"
-              type="text"
-              name="lastName"
-              value={player.lastName}
-              placeholder="Nom"
-              onChange={(e) => handlePlayer(e.target.name, e.target.value)}
+        <div>
+          <h1 className="text-center font-bold object-center mb-5">
+            NOM: {player.lastName} {player.firstName}
+          </h1>
+          <div className="mb-5 md:flex">
+            <img
+              className="w-11/12 flex m-auto md:w-6/12 md:ml-2 rounded-tl-3xl"
+              src="\src\assets\arsene1.jpg"
+              alt="arsène"
             />
-          </label>
-          <label className="w-[40%] flex flex-col text-2xl">
-            Prénom :
-            <input
-              required
-              className=" bg-slate-300 placeholder-black p-2 rounded-3xl"
-              type="text"
-              name="firstName"
-              value={player.firstName}
-              placeholder="Prénom"
-              onChange={(e) => handlePlayer(e.target.name, e.target.value)}
-            />
-          </label>
-          <label className="w-[40%] flex flex-col text-2xl">
-            Age :
-            <input
-              required
-              className=" bg-slate-300 placeholder-black p-2 rounded-3xl"
-              type="text"
-              name="p_age"
-              value={player.p_age}
-              placeholder="Age"
-              onChange={(e) => handlePlayer(e.target.name, e.target.value)}
-            />
-          </label>
-          <label className="w-[40%] flex flex-col text-2xl">
-            Numéro de téléphone :
-            <input
-              required
-              className=" bg-slate-300 placeholder-black p-2 rounded-3xl"
-              type="text"
-              name="phone_num"
-              value={player.phone_num}
-              placeholder="Numéro de téléphone"
-              onChange={(e) => handlePlayer(e.target.name, e.target.value)}
-            />
-          </label>
-          <label className="w-[40%] flex flex-col text-2xl">
-            Email :
-            <input
-              required
-              className=" bg-slate-300 placeholder-black p-2 rounded-3xl"
-              type="text"
-              name="email"
-              value={player.email}
-              placeholder="Email"
-              onChange={(e) => handlePlayer(e.target.name, e.target.value)}
-            />
-          </label>
-          <label className="w-[40%] flex flex-col text-2xl">
-            Mot de passe :
-            <input
-              required
-              className=" bg-slate-300 placeholder-black p-2 rounded-3xl"
-              type="text"
-              name="password"
-              value={player.password}
-              placeholder="Mot de passe"
-              onChange={(e) => handlePlayer(e.target.name, e.target.value)}
-            />
-          </label>
-          <label className="w-[40%] flex flex-col text-2xl">
-            Poste :
-            <input
-              required
-              className=" bg-slate-300 placeholder-black p-2 rounded-3xl"
-              type="text"
-              name="p_position_id"
-              value={player.p_position_id}
-              placeholder="Poste"
-              onChange={(e) => handlePlayer(e.target.name, e.target.value)}
-            />
-          </label>
-          <label className="w-[90%] flex flex-col text-2xl">
-            Pied fort :
-            <textarea
-              required
-              className=" bg-slate-300 placeholder-black p-2 rounded-3xl"
-              type="text"
-              name="foot_id"
-              value={player.foot_id}
-              placeholder="Pied fort"
-              onChange={(e) => handlePlayer(e.target.name, e.target.value)}
-            />
-          </label>
-          <label className="w-[90%] flex flex-col text-2xl">
-            Statut :
-            <textarea
-              required
-              className=" bg-slate-300 placeholder-black p-2 rounded-3xl"
-              type="text"
-              name="user_status_id"
-              value={player.user_status_id}
-              placeholder="Statut"
-              onChange={(e) => handlePlayer(e.target.name, e.target.value)}
-            />
-          </label>
+            <div className="md:w-full md:ml-2">
+              <h3 className="text-center font-bold object-center mb-5 mt-2">
+                Caractéristiques
+              </h3>
+              <div className="ml-2 md:h-5/6 md:ml-2 md:mt-3 md:w-full md:flex md:flex-col md:justify-between">
+                <label className="flex justify-between w-full mb-2">
+                  Nom:
+                  <input
+                    required
+                    className=" bg-slate-300 placeholder-black p-2 rounded-3xl h-8 w-8/12 mr-2"
+                    type="text"
+                    name="lastName"
+                    value={player.lastName}
+                    onChange={(e) =>
+                      handlePlayer(e.target.name, e.target.value)
+                    }
+                  />
+                </label>
+                <label className="flex justify-between mb-2">
+                  Prénom :
+                  <input
+                    required
+                    className=" bg-slate-300 placeholder-black p-2 rounded-3xl h-8 w-8/12 mr-2"
+                    type="text"
+                    name="firstName"
+                    value={player.firstName}
+                    onChange={(e) =>
+                      handlePlayer(e.target.name, e.target.value)
+                    }
+                  />
+                </label>
+                <label className="flex justify-between mb-2">
+                  Age :
+                  <input
+                    required
+                    className=" bg-slate-300 placeholder-black p-2 rounded-3xl h-8 w-8/12 mr-2"
+                    type="text"
+                    name="p_age"
+                    value={player.p_age}
+                    onChange={(e) =>
+                      handlePlayer(e.target.name, e.target.value)
+                    }
+                  />
+                </label>
+                <label className="flex justify-between mb-2">
+                  Email :
+                  <input
+                    required
+                    className=" bg-slate-300 placeholder-black p-2 rounded-3xl h-8 w-8/12 mr-2"
+                    type="text"
+                    name="email"
+                    value={player.email}
+                    onChange={(e) =>
+                      handlePlayer(e.target.name, e.target.value)
+                    }
+                  />
+                </label>
+                <label className="flex justify-between mb-2">
+                  Téléphone :
+                  <input
+                    required
+                    className=" bg-slate-300 placeholder-black p-2 rounded-3xl h-8 w-8/12 mr-2"
+                    type="text"
+                    name="phone_num"
+                    value={player.phone_num}
+                    onChange={(e) =>
+                      handlePlayer(e.target.name, e.target.value)
+                    }
+                  />
+                </label>
+                <label className="flex justify-between mb-2">
+                  Pied fort :
+                  <input
+                    required
+                    className=" bg-slate-300 placeholder-black p-2 rounded-3xl h-8 w-8/12 mr-2"
+                    type="text"
+                    name="foot_id"
+                    value={player.foot_id}
+                    onChange={(e) =>
+                      handlePlayer(e.target.name, e.target.value)
+                    }
+                  />
+                </label>
+                <label className="flex justify-between mb-2">
+                  Poste :
+                  <input
+                    required
+                    className=" bg-slate-300 placeholder-black p-2 rounded-3xl h-8 w-8/12 mr-2"
+                    type="text"
+                    name="p_position_id"
+                    value={player.p_position_id}
+                    onChange={(e) =>
+                      handlePlayer(e.target.name, e.target.value)
+                    }
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
+          <div className="mt-5 flex justify-center">
+            <button
+              type="submit"
+              className="w-1/4 bg-zinc-900 text-gray-50 rounded-lg"
+            >
+              Supprimer
+            </button>
+            <button
+              type="submit"
+              className="w-1/4 bg-zinc-900 text-gray-50 rounded-lg ml-5 mr-2"
+            >
+              Modifier
+            </button>
+            <button
+              className=" w-1/4 bg-zinc-900 text-gray-50 rounded-lg ml-5 mr-2"
+              type="submit"
+            >
+              Envoyer
+            </button>
+            <h3 className=" text-red-700">{message}</h3>
+          </div>
         </div>
-        <button className=" justify-self-center" type="submit">
-          Envoyer
-        </button>
-        <h3 className=" text-red-700">{message}</h3>
       </form>
     </div>
   );
