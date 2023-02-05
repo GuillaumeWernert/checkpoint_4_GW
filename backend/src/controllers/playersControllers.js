@@ -2,7 +2,7 @@ const models = require("../models");
 const validate = require("../services/players");
 
 const browse = (req, res) => {
-  models.player
+  models.players
     .findAll()
     .then(([rows]) => {
       res.send(rows);
@@ -14,7 +14,7 @@ const browse = (req, res) => {
 };
 
 const read = (req, res) => {
-  models.player
+  models.players
     .find(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {

@@ -5,6 +5,16 @@ class PlayersManager extends AbstractManager {
     super({ table: "players" });
   }
 
+  findAll() {
+    return this.connection.query(`select * from  ${this.table}`);
+  }
+
+  find(id) {
+    return this.connection.query(`select * from  ${this.table} where id = ?`, [
+      id,
+    ]);
+  }
+
   insert(player) {
     return this.connection.query(
       `insert into ${this.table} (lastName, firstName, p_age, phone_num, email, password, p_position_id, foot_id, user_status_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
