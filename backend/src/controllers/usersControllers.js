@@ -8,7 +8,7 @@ const validateUser = (req, res) => {
     password: Joi.string().min(8).max(25).required(),
   }).validate(req.body, { abortEarly: false });
   if (!error) {
-    res.send("hellooooo");
+    res.send("Hello");
   } else {
     res.status(400).json({ msg: "Wrong credentials" });
   }

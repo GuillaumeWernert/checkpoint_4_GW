@@ -382,7 +382,7 @@ VALUES (
     39,
     0632302768,
     "guil.wernert@gmail.com",
-    "entraineur123",
+    "Entraineur123",
     15,
     1,
     1
