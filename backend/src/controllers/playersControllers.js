@@ -2,7 +2,7 @@ const models = require("../models");
 const validate = require("../services/players");
 
 const browse = (req, res) => {
-  models.player
+  models.players
     .findAll()
     .then(([rows]) => {
       res.send(rows);
@@ -14,7 +14,7 @@ const browse = (req, res) => {
 };
 
 const read = (req, res) => {
-  models.player
+  models.players
     .find(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
@@ -29,31 +29,31 @@ const read = (req, res) => {
     });
 };
 
-const edit = (req, res) => {
+const update = (req, res) => {
   const player = req.body;
-
-  // TODO validations (length, format...)
-
-  player.id = parseInt(req.params.id, 10);
-
-  models.player
-    .update(player)
-    .then(([result]) => {
-      if (result.affectedRows === 0) {
-        res.sendStatus(404);
-      } else {
-        res.sendStatus(204);
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
+  const { id } = req.params;
+  const error = validate(player, "optional");
+  if (error) {
+    res.status(422).send(error);
+  } else {
+    models.players
+      .update(player, id)
+      .then((response) => {
+        if (response[0].affectedRows === 0) {
+          res.sendStatus(404);
+        } else {
+          res.sendStatus(204);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
 };
 
 const add = (req, res) => {
   const player = req.body;
-  const error = validate(player);
+  const error = validate(player, "required");
   if (error) {
     res.status(422).send(error);
   } else {
@@ -69,25 +69,25 @@ const add = (req, res) => {
 };
 
 const destroy = (req, res) => {
-  models.player
-    .delete(req.params.id)
-    .then(([result]) => {
-      if (result.affectedRows === 0) {
+  const { id } = req.params;
+  models.players
+    .delete(id)
+    .then((response) => {
+      if (response[0].affectedRows === 0) {
         res.sendStatus(404);
       } else {
         res.sendStatus(204);
       }
     })
     .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
+      res.status(500).send(err);
     });
 };
 
 module.exports = {
   browse,
   read,
-  edit,
+  update,
   add,
   destroy,
 };

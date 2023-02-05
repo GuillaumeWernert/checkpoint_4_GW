@@ -5,6 +5,16 @@ class PlayersManager extends AbstractManager {
     super({ table: "players" });
   }
 
+  findAll() {
+    return this.connection.query(`select * from  ${this.table}`);
+  }
+
+  find(id) {
+    return this.connection.query(`select * from  ${this.table} where id = ?`, [
+      id,
+    ]);
+  }
+
   insert(player) {
     return this.connection.query(
       `insert into ${this.table} (lastName, firstName, p_age, phone_num, email, password, p_position_id, foot_id, user_status_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -22,11 +32,17 @@ class PlayersManager extends AbstractManager {
     );
   }
 
-  update(player) {
-    return this.connection.query(
-      `update ${this.table} set title = ? where id = ?`,
-      [player.title, player.id]
-    );
+  delete(id) {
+    return this.connection.query(`DELETE FROM ${this.table} WHERE id = ?`, [
+      id,
+    ]);
+  }
+
+  update(player, id) {
+    return this.connection.query(`UPDATE ${this.table} SET ? WHERE id = ?`, [
+      player,
+      id,
+    ]);
   }
 }
 
