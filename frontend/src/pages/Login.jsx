@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import apiConnexion from "@services/apiConnexion";
-import User from "@context/User";
+import User from "../context/User";
 
 function Login() {
   const [connexion, setConnexion] = useState({ email: "", password: "" });
