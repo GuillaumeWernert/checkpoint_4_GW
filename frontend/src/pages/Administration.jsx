@@ -28,7 +28,7 @@ function Administration() {
     const { status, errorMessage } = validatePlayer(player);
     if (status) {
       apiConnexion
-        .post("/players", { ...player })
+        .post("/players", player)
         .then(() => {
           setMessage("player succesfully added");
         })
@@ -43,7 +43,7 @@ function Administration() {
   return (
     <div>
       <h1 className="text-3xl mb-4 text-center">Administration</h1>
-      <form onSubmit={sendForm}>
+      <form onSubmit={(e) => sendForm(e)}>
         <h2 className="text-2xl mb-4 text-center">Ajout d'un nouveau joueur</h2>
         <div className="flex flex-wrap justify-evenly gap-5 mb-4">
           <label className="w-[40%] flex flex-col text-2xl">
