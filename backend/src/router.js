@@ -10,9 +10,8 @@ router.get("/items/:id", itemControllers.read);
 
 router.put("/items/:id", itemControllers.edit);
 
-router.post("/items", itemControllers.add);
 router.post("/players", playersControllers.add);
 
-router.delete("/items/:id", itemControllers.destroy);
+router.delete("/players/:id", playersControllers.destroy);
 
 module.exports = router;

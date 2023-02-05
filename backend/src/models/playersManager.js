@@ -22,6 +22,12 @@ class PlayersManager extends AbstractManager {
     );
   }
 
+  delete(id) {
+    return this.connection.query(`DELETE FROM ${this.table} WHERE id = ?`, [
+      id,
+    ]);
+  }
+
   update(player) {
     return this.connection.query(
       `update ${this.table} set title = ? where id = ?`,

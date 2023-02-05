@@ -69,18 +69,18 @@ const add = (req, res) => {
 };
 
 const destroy = (req, res) => {
-  models.player
-    .delete(req.params.id)
-    .then(([result]) => {
-      if (result.affectedRows === 0) {
+  const { id } = req.params;
+  models.players
+    .delete(id)
+    .then((response) => {
+      if (response[0].affectedRows === 0) {
         res.sendStatus(404);
       } else {
         res.sendStatus(204);
       }
     })
     .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
+      res.status(500).send(err);
     });
 };
 
