@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Players from "@pages/Players";
+import AllPlayers from "@pages/AllPlayers";
 import Administration from "@pages/Administration";
 import Home from "@pages/Home";
 import Footer from "@components/Footer";
@@ -14,9 +14,9 @@ function App() {
     <Router>
       <NavBar />
       <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="players" element={<Players />} />
+        <Route path="/" element={<Home />} />
+        <Route path="login" element={<Login />} />
+        <Route path="players" element={<AllPlayers />} />
         <Route path="administration" element={<Administration />} />
       </Routes>
       <Footer />
