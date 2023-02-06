@@ -6,7 +6,7 @@ function NavBar() {
   return (
     <>
       <div className="hidden sm:h-20 sm:flex sm:justify-between sm:items-center bg-black">
-        <Link to="/home">
+        <Link to="/">
           <img
             className="h-16 mr-10 rounded-full ml-5"
             src="\src\assets\logo_fcd.jpg"
